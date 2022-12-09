@@ -1,26 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+
+      <div className="App">
+        <h2>Hello Samurai</h2>
+        <Routes>
+          <Route path={"/hello"} element={<HelloMassage message={'Hello guys'} />} />
+          <Route path={"/bye"} element={<ByeMessage message={'Bye guys'} />} />
+        </Routes>
+      </div>
+
+    </BrowserRouter>
   );
+}
+
+type MessageType = {
+  message: string
+}
+
+const HelloMassage: React.FC<MessageType> = (props) => {
+  return (
+    <>
+      <h4>{props.message}</h4>
+    </>
+  )
+}
+
+const ByeMessage: React.FC<MessageType> = (props) => {
+  return (
+    <>
+      <h4>{props.message}</h4>
+    </>
+  )
 }
 
 export default App;
